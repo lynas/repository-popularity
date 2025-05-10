@@ -1,8 +1,8 @@
 # Github repository popularity
 
 ![Build](https://github.com/lynas/repository-popularity/actions/workflows/build.yml/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sazzad-islam-eu_repository-score&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sazzad-islam-eu_repository-score)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sazzad-islam-eu_repository-score&metric=coverage)](https://sonarcloud.io/summary/new_code?id=sazzad-islam-eu_repository-score)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sazzad-islam-eu_repository-popularity&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sazzad-islam-eu_repository-popularity)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sazzad-islam-eu_repository-popularity&metric=coverage)](https://sonarcloud.io/summary/new_code?id=sazzad-islam-eu_repository-popularity)
 
 - This project returns popularity of repository in github
 - Input repository `language` and `lastUpdatedat`

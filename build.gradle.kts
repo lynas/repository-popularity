@@ -56,12 +56,13 @@ jacoco {
 
 sonar {
 	properties {
-		property("sonar.projectKey", "sazzad-islam-eu_repository-score")
+		property("sonar.projectKey", "sazzad-islam-eu_repository-popularity")
 		property("sonar.organization", "sazzad-islam-eu")
 		property("sonar.host.url", "https://sonarcloud.io")
 		val exclusions = listOf(
 			"**/config/**/*.java",
 			"**/dto/**/*.java",
+			"**/**/ControllerAdvise.java",
 		)
 		property("sonar.coverage.exclusions", exclusions)
 	}
