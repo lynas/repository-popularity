@@ -1,8 +1,9 @@
 plugins {
 	java
+	jacoco
 	id("org.springframework.boot") version "3.4.5"
 	id("io.spring.dependency-management") version "1.1.7"
-	jacoco
+	id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "com.lynas.redcare"
@@ -46,5 +47,17 @@ tasks.jacocoTestReport {
 	dependsOn(tasks.test)
 	reports {
 		xml.required.set(true)
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.13"
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "sazzad-islam-eu_repository-score")
+		property("sonar.organization", "sazzad-islam-eu")
+		property("sonar.host.url", "https://sonarcloud.io")
 	}
 }

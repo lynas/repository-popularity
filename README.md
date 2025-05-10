@@ -1,6 +1,6 @@
 # Github repository popularity
 
-![Build](https://github.com/lynas/repository-popularity/actions/workflows/build-and-test.yml/badge.svg)
+![Build](https://github.com/lynas/repository-popularity/actions/workflows/build.yml/badge.svg)
 
 - This project returns popularity of repository in github
 - Input repository `language` and `lastUpdatedat`
