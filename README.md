@@ -3,7 +3,7 @@
 ![Build](https://github.com/lynas/repository-popularity/actions/workflows/build-and-test.yml/badge.svg)
 
 - This project returns popularity of repository in github
-- Input repository language and lastUpdated at
+- Input repository `language` and `lastUpdatedat`
 - How to run
   - Run docker desktop
   - Open terminal and execute `./gradlew bootRun`
@@ -31,8 +31,13 @@ curl --location 'http://localhost:8088/repository-scores?language=java&lastUpdat
 
 ## Design Decision 
 - Project is created with spring boot web and redis
-- Redis used to cache user request response so that remote server ( github api ) does not need to hit for same user request
-- Cache TTL set 10 minutes, it can be change from `CacheConfig.java`
-- Interface implementation 
+- Redis used to cache user request response so that remote server ( Github Api ) does not need to hit for same user request
+- Cache `TTL` set 10 minutes, it can be change from `application.yml`
+- Keeping the polymorphism in mind service interface `ScoringService` is used. Currently `GithubRepositoryScoringService` is the implementation it can be implemented by other repository hosting
+- Calculation is done from `ScoreCalculator` taking weight of start and from `application.yml` so that algorithm can be easily updated
+- Used virtual thread it should be less resource hungry
 
 ## Future improvements
+- Authentication and authorization can be added
+- More granular exception handling can be implemented
+- Application can be converted as non blocking api

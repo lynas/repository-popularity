@@ -1,6 +1,8 @@
 server:
   port: 8088
 app:
+  cache:
+    ttl: 10
   score:
     github-api-base-url: "https://api.github.com"
     # Other repository base url if needed later
