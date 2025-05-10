@@ -1,0 +1,22 @@
+server:
+  port: 8088
+app:
+  score:
+    github-api-base-url: "https://api.github.com"
+    # Other repository base url if needed later
+    repo:
+      star-weight: 1
+      fork-weight: 2
+      last-update-weight: 0.1
+spring:
+  application:
+    name: repo-popularity
+  threads:
+    virtual:
+      enabled: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
