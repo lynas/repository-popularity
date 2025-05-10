@@ -59,5 +59,10 @@ sonar {
 		property("sonar.projectKey", "sazzad-islam-eu_repository-score")
 		property("sonar.organization", "sazzad-islam-eu")
 		property("sonar.host.url", "https://sonarcloud.io")
+		val exclusions = listOf(
+			"**/config/**/*.java",
+			"**/dto/**/*.java",
+		)
+		property("sonar.coverage.exclusions", exclusions)
 	}
 }
