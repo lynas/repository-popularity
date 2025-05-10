@@ -14,6 +14,7 @@ class ScoreCalculatorTest {
 
     @Test
     void testCalculateScore() {
+        //given
         ScoreConfigProperties config = mock(ScoreConfigProperties.class);
         when(config.starWeight()).thenReturn(1);
         when(config.forkWeight()).thenReturn(2);
@@ -30,8 +31,11 @@ class ScoreCalculatorTest {
         );
 
         ScoreCalculator calculator = new ScoreCalculator(config);
+
+        //when
         double score = calculator.calculateScore(repo);
 
+        //then
         // Expected = 10*1 + 4*2 - 3*0.1 = 17.7
         assertEquals(17.7, score, 0.0001);
     }

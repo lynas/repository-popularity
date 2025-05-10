@@ -29,6 +29,7 @@ class RepositoryScoreControllerTest {
 
     @Test
     void shouldReturnRepositoryScores() throws Exception {
+        //given
         var url = "http://localhost";
         List<RepositoryScoreDto> scores = List.of(
                 new RepositoryScoreDto("repo1", 100.0, url),
@@ -37,6 +38,8 @@ class RepositoryScoreControllerTest {
         when(scoringService.getRepositoryScore("java", LocalDate.of(2024, 4, 1)))
                 .thenReturn(new RepositoryScoreResponse(scores));
 
+        //when
+        // then
         mockMvc.perform(get("/repository-scores")
                         .param("language", "java")
                         .param("lastUpdatedAt", "2024-04-01"))
@@ -52,12 +55,15 @@ class RepositoryScoreControllerTest {
 
     @Test
     void shouldUseDefaultsWhenParamsNotProvided() throws Exception {
+        //given
         var url = "http://localhost";
         List<RepositoryScoreDto> scores = List.of(new RepositoryScoreDto("defaultRepo", 50.0, url));
         LocalDate expectedDate = LocalDate.now().minusDays(30);
         when(scoringService.getRepositoryScore("", expectedDate))
                 .thenReturn(new RepositoryScoreResponse(scores));
 
+        //when
+        // then
         mockMvc.perform(get("/repository-scores"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data[0].name").value("defaultRepo"))

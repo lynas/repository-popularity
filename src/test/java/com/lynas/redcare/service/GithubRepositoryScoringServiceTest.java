@@ -28,7 +28,7 @@ class GithubRepositoryScoringServiceTest {
     }
 
     @Test
-    void getRepositoryScore_shouldReturnCalculatedScores() {
+    void getRepositoryScoreShouldReturnCalculatedScores() {
         // given
         String language = "Java";
         LocalDate lastUpdatedAt = LocalDate.of(2024, 1, 1);

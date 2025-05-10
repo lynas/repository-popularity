@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sazzad-islam-eu_repository-popularity&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sazzad-islam-eu_repository-popularity)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sazzad-islam-eu_repository-popularity&metric=coverage)](https://sonarcloud.io/summary/new_code?id=sazzad-islam-eu_repository-popularity)
 
-- This project returns popularity of repository in github
+- This project returns popularity of a GitHub repository
 - Input repository `language` and `lastUpdatedat`
 - How to run
   - Run docker desktop
@@ -36,10 +36,17 @@ curl --location 'http://localhost:8088/repository-scores?language=java&lastUpdat
 - Redis used to cache user request response so that remote server ( Github Api ) does not need to hit for same user request
 - Cache `TTL` set 10 minutes, it can be change from `application.yml`
 - Keeping the polymorphism in mind service interface `ScoringService` is used. Currently `GithubRepositoryScoringService` is the implementation it can be implemented by other repository hosting
-- Calculation is done from `ScoreCalculator` taking weight of start and from `application.yml` so that algorithm can be easily updated
-- Used virtual thread it should be less resource hungry
+- Calculation is done from `ScoreCalculator` taking scoring weight from `application.yml` so that algorithm can be easily updated
+``` 
+Scoring algorithm
+(starCount * starWaight) + (forkCount * forkWaight) - (lastUpdatedDateCount * lastUpdatedDateWaight) = score  
+e.g. 10*1 + 4*2 - 3*0.1 = 17.7
+```
+- Used virtual thread, it should be less resource intensive
+- Code is tested properly with test coverage over 90 percent 
+- Code is configured with GithubAction build and SonarCloud reporting test coverage
 
 ## Future improvements
 - Authentication and authorization can be added
 - More granular exception handling can be implemented
-- Application can be converted as non blocking api
+- Application can be converted as non-blocking api
