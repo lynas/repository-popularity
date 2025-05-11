@@ -1,24 +1,24 @@
 server:
-  port: 8088
+  port: ${SERVER_PORT:8088}
 app:
   cache:
-    ttl: 10
+    ttl: ${CACHE_TTL:10}
   score:
-    github-api-base-url: "https://api.github.com"
+    github-api-base-url: ${GITHUB_API_BASE_URL:https://api.github.com}
     # Other repository base url if needed later
     repo:
-      star-weight: 1
-      fork-weight: 2
-      last-update-weight: 0.1
+      star-weight: ${STAR_WEIGHT:1}
+      fork-weight: ${FORK_WEIGHT:2}
+      last-update-weight: ${LAST_UPDATE_WEIGHT:0.1}
 spring:
   application:
-    name: repo-popularity
+    name: repository-popularity
   threads:
     virtual:
       enabled: true
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
   cache:
     type: redis
