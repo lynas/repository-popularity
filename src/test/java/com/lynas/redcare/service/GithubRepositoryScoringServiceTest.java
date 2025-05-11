@@ -41,7 +41,7 @@ class GithubRepositoryScoringServiceTest {
                 LocalDate.now().minusDays(10) + "T01:10:17Z",
                 LocalDate.now().minusDays(5) + "2024-11-19T01:10:17Z",
                 "https://github.com/repo1"
-                );
+        );
         var repo2 = new RepositoryDetailsDto(
                 "repo2",
                 language,
