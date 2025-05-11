@@ -53,4 +53,3 @@ e.g. 10*1 + 4*2 - 3*0.1 = 17.7
 - Authentication and authorization can be added
 - More granular exception handling can be implemented
 - Pagination can be added
-- Application can be converted as non-blocking api
