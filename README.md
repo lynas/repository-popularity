@@ -9,6 +9,9 @@
 - How to run
   - Run docker desktop
   - Open terminal and execute `./gradlew bootRun`
+- Swagger API Available in following URL
+- `http://localhost:8088/swagger-ui/index.html`
+![api-doc.png](api-doc.png)
 - curl command to make api request
 ``` 
 curl --location 'http://localhost:8088/repository-scores?language=java&lastUpdatedAt=2024-04-01' 
