@@ -20,7 +20,7 @@ public class GithubRepositoryScoringService implements ScoringService {
     @Cacheable(cacheNames = CACHE_REPOSITORY_SCORE)
     @Override
     public RepositoryScoreResponse getRepositoryScore(String language, LocalDate lastUpdatedAt) {
-//        InputValidator.validateLanguage(language);
+        InputValidator.validateLanguage(language);
         var result = githubClientService.getRepositoryInfo(language, lastUpdatedAt);
         var scoreList = result.items().stream()
                 .map(it -> new RepositoryScoreDto(

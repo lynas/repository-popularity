@@ -14,10 +14,12 @@ import java.util.Collections;
 @RestControllerAdvice
 public class ControllerAdvise {
 
+    private static final String ERROR = "error";
+
     @ExceptionHandler(APICallException.class)
     public ResponseEntity<ErrorResponse> handleClientException(APICallException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                Collections.singletonMap("error", ex.getMessage()),
+                Collections.singletonMap(ERROR, ex.getMessage()),
                 "RESOURCE_NOT_FOUND"
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(ex.getStatusCode().value()));
@@ -26,7 +28,7 @@ public class ControllerAdvise {
     @ExceptionHandler(InvalidInputException.class)
     public ResponseEntity<ErrorResponse> handleInvalidInputException(InvalidInputException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                Collections.singletonMap("error", ex.getMessage()),
+                Collections.singletonMap(ERROR, ex.getMessage()),
                 "INVALID"
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(ex.getStatusCode().value()));
@@ -43,7 +45,7 @@ public class ControllerAdvise {
         }
 
         ErrorResponse errorResponse = new ErrorResponse(
-                Collections.singletonMap("error", message),
+                Collections.singletonMap(ERROR, message),
                 "INVALID_INPUT"
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);

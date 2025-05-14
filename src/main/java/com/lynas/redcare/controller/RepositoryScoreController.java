@@ -3,7 +3,6 @@ package com.lynas.redcare.controller;
 import com.lynas.redcare.dto.RepositoryScoreResponse;
 import com.lynas.redcare.service.ScoringService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
