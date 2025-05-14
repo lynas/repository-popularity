@@ -2,6 +2,7 @@ package com.lynas.redcare.component;
 
 import com.lynas.redcare.config.ScoreConfigProperties;
 import com.lynas.redcare.dto.RepositoryDetailsDto;
+import com.lynas.redcare.service.ScoreCalculatorService;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.time.ZoneOffset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class ScoreCalculatorTest {
+class ScoreCalculatorServiceTest {
 
     @Test
     void testCalculateScore() {
@@ -30,7 +31,7 @@ class ScoreCalculatorTest {
                         .toString()
         );
 
-        ScoreCalculator calculator = new ScoreCalculator(config);
+        ScoreCalculatorService calculator = new ScoreCalculatorService(config);
 
         //when
         double score = calculator.calculateScore(repo);

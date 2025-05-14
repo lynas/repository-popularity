@@ -1,4 +1,4 @@
-package com.lynas.redcare.component;
+package com.lynas.redcare.service;
 
 import com.lynas.redcare.config.ScoreConfigProperties;
 import com.lynas.redcare.dto.RepositoryDetailsDto;
@@ -10,11 +10,11 @@ import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 
 @Component
-public class ScoreCalculator {
+public class ScoreCalculatorService {
 
     private final ScoreConfigProperties scoreConfigProp;
 
-    public ScoreCalculator(ScoreConfigProperties scoreConfigProp) {
+    public ScoreCalculatorService(ScoreConfigProperties scoreConfigProp) {
         this.scoreConfigProp = scoreConfigProp;
     }
 

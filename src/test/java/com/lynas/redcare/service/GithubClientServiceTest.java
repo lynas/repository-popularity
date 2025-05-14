@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lynas.redcare.dto.GithubRepositoryApiResponseDto;
 import com.lynas.redcare.dto.RepositoryDetailsDto;
-import com.lynas.redcare.exception.ClientException;
+import com.lynas.redcare.exception.APICallException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +78,7 @@ class GithubClientServiceTest {
         server.expect(requestTo(uri)).andRespond(MockRestResponseCreators.withResourceNotFound());
         // when
         // then
-        Assertions.assertThrows(ClientException.class, () -> client.getRepositoryInfo(language, lastUpdatedAt));
+        Assertions.assertThrows(APICallException.class, () -> client.getRepositoryInfo(language, lastUpdatedAt));
     }
 
     @Test

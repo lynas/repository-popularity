@@ -1,6 +1,5 @@
 package com.lynas.redcare.service;
 
-import com.lynas.redcare.component.ScoreCalculator;
 import com.lynas.redcare.dto.GithubRepositoryApiResponseDto;
 import com.lynas.redcare.dto.RepositoryDetailsDto;
 import com.lynas.redcare.dto.RepositoryScoreDto;
@@ -17,14 +16,14 @@ import static org.mockito.Mockito.*;
 class GithubRepositoryScoringServiceTest {
 
     private GithubClientService githubClientService;
-    private ScoreCalculator scoreCalculator;
+    private ScoreCalculatorService scoreCalculatorService;
     private GithubRepositoryScoringService scoringService;
 
     @BeforeEach
     void setUp() {
         githubClientService = mock(GithubClientService.class);
-        scoreCalculator = mock(ScoreCalculator.class);
-        scoringService = new GithubRepositoryScoringService(githubClientService, scoreCalculator);
+        scoreCalculatorService = mock(ScoreCalculatorService.class);
+        scoringService = new GithubRepositoryScoringService(githubClientService, scoreCalculatorService);
     }
 
     @Test
@@ -53,8 +52,8 @@ class GithubRepositoryScoringServiceTest {
         );
 
         when(githubClientService.getRepositoryInfo(language, lastUpdatedAt)).thenReturn(new GithubRepositoryApiResponseDto(List.of(repo1, repo2)));
-        when(scoreCalculator.calculateScore(repo1)).thenReturn(200.0);
-        when(scoreCalculator.calculateScore(repo2)).thenReturn(100.0);
+        when(scoreCalculatorService.calculateScore(repo1)).thenReturn(200.0);
+        when(scoreCalculatorService.calculateScore(repo2)).thenReturn(100.0);
 
         // when
         RepositoryScoreResponse response = scoringService.getRepositoryScore(language, lastUpdatedAt);
@@ -64,8 +63,8 @@ class GithubRepositoryScoringServiceTest {
         assertThat(response.data().getFirst()).isEqualTo(new RepositoryScoreDto("repo1", 200.0, "https://github.com/repo1"));
 
         verify(githubClientService).getRepositoryInfo(language, lastUpdatedAt);
-        verify(scoreCalculator).calculateScore(repo1);
-        verify(scoreCalculator).calculateScore(repo2);
+        verify(scoreCalculatorService).calculateScore(repo1);
+        verify(scoreCalculatorService).calculateScore(repo2);
     }
 
 }
