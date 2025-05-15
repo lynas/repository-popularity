@@ -3,6 +3,7 @@ package com.lynas.redcare.controller;
 import com.lynas.redcare.dto.ErrorResponse;
 import com.lynas.redcare.exception.APICallException;
 import com.lynas.redcare.exception.InvalidInputException;
+import com.lynas.redcare.validator.InputValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,23 +30,15 @@ public class ControllerAdvise {
     public ResponseEntity<ErrorResponse> handleInvalidInputException(InvalidInputException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
                 Collections.singletonMap(ERROR, ex.getMessage()),
-                "INVALID"
+                "INVALID_INPUT"
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.valueOf(ex.getStatusCode().value()));
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        var paramName = ex.getName();
-        var value = ex.getValue();
-        var message = ex.getMessage();
-        var lastUpdatedAt = paramName.equals("lastUpdatedAt");
-        if (lastUpdatedAt) {
-            message = String.format("Invalid %s field : [ %s ]", paramName, value);
-        }
-
+    public ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex){
         ErrorResponse errorResponse = new ErrorResponse(
-                Collections.singletonMap(ERROR, message),
+                Collections.singletonMap(ERROR, InputValidator.getErrorMessageForInvalidInput(ex)),
                 "INVALID_INPUT"
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
