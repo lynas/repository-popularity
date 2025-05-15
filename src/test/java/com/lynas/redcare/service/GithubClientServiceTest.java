@@ -82,6 +82,19 @@ class GithubClientServiceTest {
     }
 
     @Test
+    void shouldThrowClientErrorForBadRequest() {
+        // given
+        var language = "Java";
+        var lastUpdatedAt = LocalDate.now().minusDays(10);
+        var baseUrl = "https://api.github.com";
+        var uri = baseUrl + "/search/repositories?q=language:" + language + "%20created:%3E" + lastUpdatedAt;
+        server.expect(requestTo(uri)).andRespond(MockRestResponseCreators.withBadRequest());
+        // when
+        // then
+        Assertions.assertThrows(APICallException.class, () -> client.getRepositoryInfo(language, lastUpdatedAt));
+    }
+
+    @Test
     void shouldThrowServerError() {
         // given
         var language = "Java";
